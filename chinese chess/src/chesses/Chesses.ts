@@ -22,6 +22,7 @@ export class Chess {
 
 	// 命名一个 inWhichArea
 	public inWhichArea: number;
+static canMove: any;
 	constructor(public positon: number, public camp: number) {
 		// 构造函数自动把参数作为类的属性,也可以给定默认位置
 		this.inWhichArea = camp;
