@@ -15,20 +15,21 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 
 ```html
-	<div class="Game">
-    <div class="board">
-      <div v-for="(row,index) in ROW" :key="row" class="row">
-        <div
-          class="block"
-          :id="(ROW - index - 1) * COL + i + 1 + ''"
-          v-for="(col,i) in COL"
-          :key="col"
-          @mouseover="hover(getId(index, i))"
-          @mouseout="out(getId(index, i))"
-        ></div>
-      </div>
+<div class="Game">
+  <div class="board">
+    <div v-for="(row,index) in ROW" :key="row" class="row">
+      <div
+        class="block"
+        :id="(ROW - index - 1) * COL + i + 1 + ''"
+        v-for="(col,i) in COL"
+        :key="col"
+        @mouseover="hover(getId(index, i))"
+        @mouseout="out(getId(index, i))"
+        >
+			</div>
     </div>
   </div>
+</div>	
 ```
 
 >1 当鼠标从棋子上离开时,提示点位需要消失 @mouseover 事件
@@ -86,5 +87,37 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 >6 进入的时候,闪烁可以移动的区域
 
 ```ts
+	
+```
 
+```scss
+	@keyframs fade {
+		0% {
+			background-color: rgba(powderblue, 0.1);
+		}
+		50% {
+			background-color: rgba(powderblue, 1);
+		}
+		100% {
+			background-color: rgba(powderblue, 0.1);
+		}
+	}
+
+	.moviable {
+		animation: fade 2s;
+		animation-iteration-count: infinite;
+	}
+```
+
+>7 超级棋子 需要改造成 返回整个数组的方法
+
+```ts
+	import AREA from './../config/config';
+	public canMove() :Array<number>{
+		let p: Array<number> = []
+		for (let i =0;i < AREA; i++) {
+			p.push(i)
+		}
+		return p
+	}
 ```

@@ -23,7 +23,7 @@ const hover = (position: number) => {
   // 遍历棋子可以移动的区域
   hoverChess = map.get(position) as chessInterface
 
-  hoverChess!.canMove.forEach(posi => {
+  hoverChess!.canMove().forEach(posi => {
     GEBI(posi + '')!.classList.add('moviable')
   })
 }
@@ -33,7 +33,7 @@ const out = (position: number) => {
   if (!map.has(position)) return
   // console.log(2);
 
-  hoverChess!.canMove.forEach(posi => {
+  hoverChess!.canMove().forEach(posi => {
     GEBI(posi + '')!.classList.remove('moviable')
   })
 }
@@ -76,8 +76,21 @@ onMounted(initMap)
 
 
 <style scoped lang="scss">
+@keyframes fade {
+  0% {
+    background-color: rgba(powderblue, 0.1);
+  }
+  50% {
+    background-color: rgba(powderblue, 1);
+  }
+  100% {
+    background-color: rgba(powderblue, 0.1);
+  }
+}
 .moviable {
-  background-color: powderblue;
+  // background-color: powderblue;
+  animation: fade 2s;
+  animation-iteration-count: infinite;
 }
 
 .chess {

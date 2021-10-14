@@ -14,7 +14,7 @@ export interface chessInterface {
 	camp: number; // 0 red 1 black
 	positon: number;
 	inWhichArea: number;
-	canMove: Array<number>;
+	canMove: ()=> Array<number>
 }
 
 export class Chess {
