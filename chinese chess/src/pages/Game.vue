@@ -17,7 +17,6 @@ const getId = (row: number, col: number) => (ROW - row - 1) * COL + col + 1
 
 // 进入
 const hover = (position: number) => {
-  // console.log(`1`, 1)
   if (!map.has(position)) return
   //  如果这个棋子的文本是空字符串代表没有任何内容
   // 遍历棋子可以移动的区域
@@ -59,11 +58,11 @@ onMounted(initMap)
 <template>
   <div class="Game">
     <div class="board">
-      <div v-for="(row,index) in ROW" :key="row" class="row">
+      <div v-for="(row, index) in ROW" :key="row" class="row">
         <div
           class="block"
           :id="(ROW - index - 1) * COL + i + 1 + ''"
-          v-for="(col,i) in COL"
+          v-for="(col, i) in COL"
           :key="col"
           @mouseover="hover(getId(index, i))"
           @mouseout="out(getId(index, i))"
