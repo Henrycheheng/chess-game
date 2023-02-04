@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { onMounted } from '@vue/runtime-core';
 import { chessInterface } from '../chesses/Chesses';
 import { COL, ROW } from '../config/config';
@@ -30,8 +30,6 @@ const hover = (position: number) => {
 // 离开
 const out = (position: number) => {
   if (!map.has(position)) return
-  // console.log(2);
-
   hoverChess!.canMove().forEach(posi => {
     GEBI(posi + '')!.classList.remove('moviable')
   })
@@ -53,7 +51,6 @@ const initMap = () => {
 onMounted(initMap)
 
 </script>
-
 
 <template>
   <div class="Game">
