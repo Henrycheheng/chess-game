@@ -1,18 +1,22 @@
-# Vue 3 + Typescript + Vite
+# need to do follow things
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+1 Analyze the Current State: Examine the current state of the game. Make sure you understand the positions of all the pieces, possible legal moves, and any rules that need to be enforced.
 
-## Recommended IDE Setup
+2 Define the Rules: Ensure that you have a clear set of rules for your chess game. This should cover aspects like how each piece moves, castling, en passant, and promoting pawns.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+3 Identify Missing Features: Determine what features or functionality are missing from your chess game. This could include implementing special moves, checking for checkmate, and handling game endings.
 
-## Type Support For `.vue` Imports in TS
+5 Design the Game Logic: Create the necessary data structures and algorithms to represent the chessboard, pieces, and their movements. Implement the rules of the game using your chosen programming language.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+6 User Interface: Develop a user interface to allow players to interact with the game. This could be a graphical interface or a text-based one, depending on your preferences and skills.
 
+7 Testing: Test the game thoroughly to ensure that all the rules are correctly implemented, and the game behaves as expected. Address any bugs or issues that you discover.
 
-# 1.棋子下一步可以走的地点(棋子可以移动的位置)
+8 Iterate and Improve: Chess games can be quite complex, so don't be discouraged if your first attempt isn't perfect. Iterate on your game, refine the user experience, and add more features as needed.
 
+9 Community or Resources: Consider seeking help from online communities or using resources like chess programming libraries or frameworks if you encounter difficulties.
+
+# 1. Where the pawn can move next (where the pawn can move)
 
 ```html
 <div class="Game">
@@ -31,10 +35,10 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
   </div>
 </div>	
 ```
+>1 When the mouse moves away from the pawn, the cue point needs to disappear @mouseover event
 
->1 当鼠标从棋子上离开时,提示点位需要消失 @mouseover 事件
+>2 When a space is crossed, do not trigger the method
 
->2 当划过空格子,不要触发方法
 ```tsx
 	const hover = (position: number) {
 		if (GEBI(position + '')!.innerText === '') return
@@ -46,19 +50,20 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 	}
 ```
 
-> 2 定义获取位置的方法
+> 2 Define the method for getting the location
 
 ```ts
 	const getId = (row: number,col: number) => (ROW - row - 1) * COL + col + 1
 ```
 
-> 3 使用 `map`保存当前的地图
+> 3 Save the current map with 'map'
+
 
 ```ts
 	const map:Map<number,chessInterface> = new Map()
 ```
 
->4 设置map
+>4 set the map
 ```ts
 	const initMap = () => {
 		for (const [k,camp] of Object.entries(camps)) {
@@ -84,11 +89,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 	}
 ```
 
->6 进入的时候,闪烁可以移动的区域
-
-```ts
-	
-```
+>6 When entering, flash an area that can be moved
 
 ```scss
 	@keyframs fade {
@@ -109,7 +110,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 	}
 ```
 
->7 超级棋子 需要改造成 返回整个数组的方法
+>7 Super Pieces need to be transformed into methods that return the entire array
 
 ```ts
 	import AREA from './../config/config';
